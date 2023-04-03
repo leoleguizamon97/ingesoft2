@@ -1,1 +1,0 @@
-El diagrama ER muestra los campos Persona.vivienda y Persona.cabeza_hogar como opcionales, pero esto es p[ara poder ingresar un promer registro y de ahi los demas campos. Como se ve en el script de datos esta condicion cambia despues a nn para ambos campos.
