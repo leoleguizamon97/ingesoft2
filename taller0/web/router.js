@@ -6,7 +6,12 @@ const conexion = require('./database/db');
 router.get('/persona', (req,res) =>{
 	res.send('PERSONA');
 })
-//Ejemplo de reques de la bd
+
+router.get('/', (req,res) =>{
+	res.render('index', {var1:'Esto es un meme'});
+})
+
+/* Ejemplo de request de la bd
 router.get('/', (req,res) =>{
 	conexion.query('SELECT * FROM persona',(error,results) => {
 		if(error){
@@ -15,6 +20,6 @@ router.get('/', (req,res) =>{
 			res.send(results);
 		}
 	})
-})
+})*/
 
 module.exports = router
