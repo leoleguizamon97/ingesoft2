@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 
-
+app.use('/favicon.ico', express.static('../logo.svg'));
 //Motor de plantillas
 app.set('view engine','ejs');
 
