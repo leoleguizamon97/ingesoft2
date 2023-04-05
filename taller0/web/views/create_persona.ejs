@@ -98,7 +98,7 @@
 		</div>
 	</nav>
 	<div class=" mx-auto" style="overflow-y: auto; overflow-x: hidden; height: 85vh; width: 70vw; min-width: fit-content; text-align: center;">
-		<form class="mx-auto" action="/save_persona" method="save_p">
+		<form class="mx-auto" action="/save_persona" method="POST" id="formulario">
 			<legend class="text-center" style="margin: 5px; ">Crear persona</legend>
 			<fieldset class="border rounded" id="datos" style="margin: 5px; padding: 5px;">
 				<label class="form-label text-center">Datos personales</label>
@@ -109,9 +109,9 @@
 						<input type="number"	name="edad"	id="edad"	class="form-control"	placeholder="Edad" inputmode="numeric"	style="margin-right: 3px;"	required>
 						<select type="number"	name="sexo"	id="sexo"	class="form-select"		placeholder="Seleccione"				style="margin-left: 2px;"	required>
 							<option disabled selected value="">Sexo</option>
-							<option value="1">Masculino</option>
-							<option value="2">Femenino</option>
-							<option value="3">Otro</option>
+							<option value=1>Masculino</option>
+							<option value=2>Femenino</option>
+							<option value=3>Otro</option>
 						</select>
 					</div>
 				</div>
@@ -120,6 +120,7 @@
 				<label class="form-label text-center">Informacion de vivienda</label>
 				<div class="d-flex align-items-center justify-content-between">
 					<label style="margin: 0px 15px;" for="vivienda">Vivienda</label>
+					<input type="tel"	name="telefono"	id="telefono"	class="form-control" style="margin: 5px 0px;" placeholder="telefono" required>
 					<select type="number"	name="vivienda"		id="vivienda"		class="form-select w-75"	placeholder="Seleccione" 	style="margin: 5px 0px;" required>
 						<option disabled selected value="">Vivienda</option>
 						<option value="3">Otro</option>
@@ -135,10 +136,9 @@
 			</fieldset>
 			<fieldset class="border rounded d-flex" style="margin: 5px; padding: 5px;">
 				<button type="submit"	href="/save_persona"	class="b_ btn btn-outline-primary w-50">Confirmar <i class="bi bi-check2-circle"></i></button>
-				<button type="reset"	href="#"	class="b_ btn btn-outline-warning w-25"><i class="bi bi-stars"></i></button>
-				<a 				href="/ver_personas"	class="b_ btn btn-outline-danger w-25"><i class="bi bi-x-square"></i></i></a>
+				<button type="reset"	href="#"				class="b_ btn btn-outline-warning w-25"><i class="bi bi-stars"></i></button>
+				<a 						href="/ver_personas"	class="b_ btn btn-outline-danger w-25"><i class="bi bi-x-square"></i></i></a>
 			</fieldset>
-			
 		</form>
 	</div>
 </body>

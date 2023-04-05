@@ -60,7 +60,7 @@ router.get('/crear_vivienda',		(req,res) =>{
 	res.render('create_vivienda');
 })
 //Post
-router.post('/save_persona',crud.save_p);
+router.post('/save_persona', crud.savep);
 
 
 
