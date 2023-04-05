@@ -33,4 +33,18 @@ router.get('/ver_viviendas', (req,res) =>{
 		}
 	})
 })
+router.get('/ver_propietarios', (req,res) =>{
+	conexion.query('SELECT * FROM propietarios',(error,results) => {
+		if(error){
+			throw error;
+		}else{
+			res.render('ver_propietarios', {results:results});
+		}
+	})
+})
+
+
+
+
+
 module.exports = router

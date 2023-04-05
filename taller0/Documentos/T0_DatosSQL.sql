@@ -1,13 +1,17 @@
 -- Selecciona la BD a usar
 use taller_0;
-
+-- Crear sexos
+insert into sexo (sexo) values 
+	('otro'),
+	('hombre'),
+    ('mujer');
 -- Crea un primer registro dummy
-insert into persona		(nombre, apellido, edad, telefono, sexo)	values	('nn','nn','0','999999999','0');
+insert into persona		(nombre, apellido, edad, telefono, sexo)	values	('nn','nn','0','999999999','3');
 
 -- Con el anterior registro permite crear los demas elementos
 insert into municipio	(nombre,area,presupuesto,gobernador)		values	('Bogota','10','1500','1');
 insert into vivienda	(direccion,capacidad,niveles,ubicacion)		values	('Cra 24 69 22','20','4','1');
-insert into propietarios(Persona_id,Vivienda_id)					values	('1','1');
+insert into propietarios(persona_id,vivienda_id)					values	('1','1');
 
 -- ahora podemos hacer que vivienda y cabeza de hogar sean obligatorios
 -- Pero primero debemos agregar la informacion restante al registro ya creado
