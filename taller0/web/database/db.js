@@ -5,6 +5,7 @@ const conexion = mysql.createConnection({
 	user: 'webuser',
 	password:'3292',
 	database:'taller_0',
+	multipleStatements: true
 });
 //Conecta con la BD
 conexion.connect((error) =>{

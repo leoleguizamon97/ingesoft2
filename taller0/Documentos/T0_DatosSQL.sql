@@ -10,7 +10,7 @@ insert into persona		(nombre, apellido, edad, telefono, sexo)	values	('nn','nn',
 
 -- Con el anterior registro permite crear los demas elementos
 insert into municipio	(nombre,area,presupuesto,gobernador)		values	('Bogota','10','1500','1');
-insert into vivienda	(direccion,capacidad,niveles,ubicacion)		values	('Cra 24 69 22','20','4','1');
+insert into vivienda	(direccion,capacidsexoad,niveles,ubicacion)		values	('Cra 24 69 22','20','4','1');
 insert into propietarios(persona_id,vivienda_id)					values	('1','1');
 
 -- ahora podemos hacer que vivienda y cabeza de hogar sean obligatorios

@@ -1,5 +1,6 @@
 const { error } = require('jquery');
 const conexion = require('../database/db');
+const { query } = require('express');
 
 exports.savep = (req,res) => {
 	const nombre		= req.body.nombre;

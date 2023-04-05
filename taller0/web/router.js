@@ -48,7 +48,21 @@ router.get('/ver_viviendas',	(req,res) =>{
 
 //Router crear
 router.get('/crear_persona',		(req,res) =>{
-	res.render('create_persona');
+	var queries = [
+		'select p.id as p_id, p.nombre, p.apellido from persona p',
+		'select v.id as v_id, v.direccion from vivienda v order by direccion asc',
+		'select m.id as m_id, m.nombre as m_nombre from municipio m'
+	]
+	conexion.query(queries.join(';'), (error,results,fields)=>{
+		if(error){
+			console.log(error);
+		}else{
+			console.log(results[1])
+			res.render('create_persona',{
+				results:results});
+		}
+
+	});
 })
 router.get('/crear_municipio',		(req,res) =>{
 	res.render('create_municipio');
