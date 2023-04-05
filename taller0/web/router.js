@@ -24,5 +24,13 @@ router.get('/ver_municipios', (req,res) =>{
 		}
 	})
 })
-
+router.get('/ver_viviendas', (req,res) =>{
+	conexion.query('SELECT * FROM vivienda',(error,results) => {
+		if(error){
+			throw error;
+		}else{
+			res.render('ver_viviendas', {results:results});
+		}
+	})
+})
 module.exports = router
