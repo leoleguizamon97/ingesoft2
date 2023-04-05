@@ -14,7 +14,7 @@ exports.save_p = (req,res) => {
 		if(error){
 			console.log(error);
 		}else{
-			console.log('Se creo el usuario '+nombre);
+			console.log('Se creo el usuario ' + nombre);
 			res.redirect('ver_personas');
 		}
 	});

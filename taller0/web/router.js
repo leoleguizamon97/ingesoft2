@@ -56,9 +56,11 @@ router.get('/crear_municipio',		(req,res) =>{
 router.get('/crear_propietario',	(req,res) =>{
 	res.render('create_propietario');
 })
-router.get('/crear_vivienda',	(req,res) =>{
+router.get('/crear_vivienda',		(req,res) =>{
 	res.render('create_vivienda');
 })
+//Post
+router.post('/save_persona',crud.save_p);
 
 
 
