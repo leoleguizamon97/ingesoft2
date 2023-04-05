@@ -19,7 +19,7 @@ router.get('/ver_personas',		(req,res) =>{
 	})
 })
 router.get('/ver_municipios',	(req,res) =>{
-	conexion.query('SELECT * FROM municipio',(error,results) => {
+	conexion.query('select m.*, p.nombre as gobernador_n, p.apellido as gobernador_a from municipio m left join	persona p on m.gobernador = p.id;',(error,results) => {
 		if(error){
 			throw error;
 		}else{
@@ -57,7 +57,6 @@ router.get('/crear_persona',		(req,res) =>{
 		if(error){
 			console.log(error);
 		}else{
-			console.log(results[1])
 			res.render('create_persona',{
 				results:results});
 		}
