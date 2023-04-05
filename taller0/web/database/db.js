@@ -12,7 +12,7 @@ conexion.connect((error) =>{
 		console.error('No se pudo conectar a la BD: '+error);
 		return
 	}
-	console.log('Funcionó la conexion a la BD socio!');
+	console.log('Conectado a la DB');
 });
 //Se exporta como modulo
 module.exports = conexion;

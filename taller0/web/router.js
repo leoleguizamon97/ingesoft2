@@ -3,17 +3,26 @@ const router = express.Router();
 
 const conexion = require('./database/db');
 
-router.get('/persona', (req,res) =>{
-	res.send('PERSONA');
-})
-
 router.get('/', (req,res) =>{
+	res.render('index')
+})
+router.get('/ver_personas', (req,res) =>{
 	conexion.query('SELECT * FROM persona',(error,results) => {
 		if(error){
 			throw error;
 		}else{
-			res.render('index', {results:results});
+			res.render('ver_personas', {results:results});
 		}
 	})
 })
+router.get('/ver_municipios', (req,res) =>{
+	conexion.query('SELECT * FROM municipio',(error,results) => {
+		if(error){
+			throw error;
+		}else{
+			res.render('ver_municipios', {results:results});
+		}
+	})
+})
+
 module.exports = router

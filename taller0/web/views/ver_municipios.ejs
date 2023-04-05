@@ -72,8 +72,8 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto">
 					<a class="nav-item">
-						<a class="nav-link mx-auto disabled" aria-current="page" href="ver_personas">Personas</a>
-						<a class="nav-link mx-auto" aria-current="page" href="ver_municipios">Municipios</a>
+						<a class="nav-link mx-auto" aria-current="page" href="ver_personas">Personas</a>
+						<a class="nav-link mx-auto disabled" aria-current="page" href="ver_municipios">Municipios</a>
 						<a class="nav-link mx-auto" aria-current="page" href="ver_viviendas">Viviendas</a>
 						<a class="nav-link mx-auto" aria-current="page" href="ver_propietarios">Propietarios</a>
 					</a>
@@ -83,7 +83,7 @@
 	</nav>
 	<div class="d-flex align-content-between align-items-center mx-auto" style="height: 5vh; min-height: 45px; width: 97vw;">
 		<div class="mx-auto">
-			<i>Tabla de Personas</i>
+			<i>Tabla de Municipios</i>
 		</div>
 		<a href="/crear_persona"class="b_ w-25 btn btn-outline-success">
 			<i></i>
@@ -96,32 +96,26 @@
 				<tr>
 					<th class="text-center" scope="col">ID			</th>
 					<th class="text-center" scope="col">Nombre		</th>
-					<th class="text-center" scope="col">Apellido	</th>
-					<th class="text-center" scope="col">Edad		</th>
-					<th class="text-center" scope="col">Telefono	</th>
-					<th class="text-center" scope="col">Sexo		</th>
-					<th class="text-center" scope="col">Vivienda	</th>
-					<th class="text-center" scope="col">Responsable	</th>
+					<th class="text-center" scope="col">Area		</th>
+					<th class="text-center" scope="col">Presupuesto	</th>
+					<th class="text-center" scope="col">Governador	</th>
 					<th class="text-center" scope="col" style="width: 10vw;">Acciones	</th>
 				</tr>
 			</thead>
 			<tbody class="table-group-divider">
-				<% results.forEach((persona)=> { %>
+				<% results.forEach((municipio)=> { %>
 					<tr>
-						<td class="text-center"><%= persona.id %>			</td>
-						<td class="text-center"><%= persona.nombre %>		</td>
-						<td class="text-center"><%= persona.apellido %>		</td>
-						<td class="text-center"><%= persona.edad %>			</td>
-						<td class="text-center"><%= persona.telefono %>		</td>
-						<td class="text-center"><%= persona.sexo %>			</td>
-						<td class="text-center"><%= persona.vivienda %>		</td>
-						<td class="text-center"><%= persona.cabeza_hogar %>	</td>
+						<td class="text-center"><%= municipio.id %>			</td>
+						<td class="text-center"><%= municipio.nombre %>		</td>
+						<td class="text-center"><%= municipio.area %>			</td>
+						<td class="text-center"><%= municipio.presupuesto %>	</td>
+						<td class="text-center"><%= municipio.gobernador %>	</td>
 						<td class="d-flex align-content-between align-items-center">
-							<a href="/edit_persona"class="b_ w-75 btn btn-outline-info">
+							<a href="/edit_municipio"class="b_ w-75 btn btn-outline-info">
 								<i>Edit</i>
 								<i class="bi bi-pencil-square"></i>
 							</a>
-							<a href="/delete_persona"class="b_ w-25 btn btn-outline-danger">
+							<a href="/delete_municipio"class="b_ w-25 btn btn-outline-danger">
 								<i></i>
 								<i class="bi bi-x-circle-fill"></i>
 							</a>
