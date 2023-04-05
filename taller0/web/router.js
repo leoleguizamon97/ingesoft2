@@ -16,16 +16,4 @@ router.get('/', (req,res) =>{
 		}
 	})
 })
-
-/* Ejemplo de request de la bd
-router.get('/', (req,res) =>{
-	conexion.query('SELECT * FROM persona',(error,results) => {
-		if(error){
-			throw error;
-		}else{
-			res.send(results);
-		}
-	})
-})*/
-
 module.exports = router
