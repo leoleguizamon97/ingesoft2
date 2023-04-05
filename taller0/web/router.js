@@ -8,7 +8,13 @@ router.get('/persona', (req,res) =>{
 })
 
 router.get('/', (req,res) =>{
-	res.render('index', {var1:'Esto es un meme'});
+	conexion.query('SELECT * FROM persona',(error,results) => {
+		if(error){
+			throw error;
+		}else{
+			res.render('index', {results:results});
+		}
+	})
 })
 
 /* Ejemplo de request de la bd
