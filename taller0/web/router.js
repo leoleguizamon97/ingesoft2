@@ -3,12 +3,14 @@ const router = express.Router();
 
 const conexion = require('./database/db');
 const crud = require('./controllers/crud');
+const { error } = require('jquery');
 
 //Router index
 router.get('/', (req,res) =>{
 	res.render('index')
 })
-//Router ver
+
+//Read
 router.get('/ver_personas',		(req,res) =>{
 	conexion.query('select p.id, p.nombre , p.apellido, p.edad, p.telefono, s.sexo, v.direccion, h.nombre as responsable_n from persona p, sexo s, vivienda v, persona h where p.sexo = s.id and p.vivienda = v.id and p.cabeza_hogar = h.id order by p.id asc',(error,results) => {
 		if(error){
@@ -47,7 +49,7 @@ router.get('/ver_viviendas',	(req,res) =>{
 	})
 })
 
-//Router crear
+//Create
 router.get('/crear_persona',		(req,res) =>{
 	var queries = [
 		'select p.id as p_id, p.nombre, p.apellido from persona p',
@@ -102,12 +104,31 @@ router.get('/crear_vivienda',		(req,res) =>{
 
 	});
 })
+
 //Post
 router.post('/save_persona', crud.savep);
 router.post('/save_municipio', crud.savem);
 router.post('/save_propietario', crud.savepo);
 router.post('/save_vivienda', crud.savev);
 
+//Edit
+router.get('/edit_persona/:id', (req,res)=>{
+	const id = req.params.id;
+	var queries = [
+		'select p.id as p_id, p.nombre, p.apellido from persona p',
+		'select v.id as v_id, v.direccion from vivienda v order by direccion asc',
+		'select * from persona where id= '+ id
+	]
 
+	conexion.query(queries.join(';'), (error,results)=>{
+		if(error){
+			console.log(error);
+		}else{
+			console.log(results)
+			res.render('edit_persona',{results:results});
+		}
+	}		
+	)
+})
 
 module.exports = router
