@@ -111,6 +111,8 @@ router.post('/save_municipio', crud.savem);
 router.post('/save_propietario', crud.savepo);
 router.post('/save_vivienda', crud.savev);
 
+router.post('/update_persona',crud.editp);
+
 //Edit
 router.get('/edit_persona/:id', (req,res)=>{
 	const id = req.params.id;

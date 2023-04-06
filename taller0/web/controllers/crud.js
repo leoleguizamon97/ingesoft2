@@ -2,6 +2,30 @@ const { error } = require('jquery');
 const conexion = require('../database/db');
 const { query } = require('express');
 
+exports.editp = (req,res)=> {
+	const id 			= req.body.id;
+	const nombre		= req.body.nombre;
+	const apellido		= req.body.apellido;
+	const edad			= req.body.edad;
+	const sexo			= req.body.sexo;
+	const telefono		= req.body.telefono;
+	const vivienda		= req.body.vivienda;
+	const cabeza_hogar	= req.body.cabeza_hogar;
+	console.log('Se edito el usuario con ID: ' + id +' ap '+ nombre);
+	let query = ('update persona set nombre="'+nombre+'",apellido="'+apellido+'", edad= "'+edad+'", telefono = "'+telefono+'", sexo = "'+sexo+'", vivienda = "'+vivienda+'", cabeza_hogar = "'+cabeza_hogar+'" where id ='+id )
+	conexion.query(query,(error,results)=>{
+		if(error){
+			console.log(error);
+		}else{
+			console.log('Se edito el usuario con ID: ' + id +' ap '+ nombre);
+			res.redirect('ver_personas');
+		}
+	});
+}
+
+
+
+
 exports.savev = (req,res) => {
 	const direccion		= req.body.direccion;
 	const capacidad		= req.body.capacidad;
