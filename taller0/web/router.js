@@ -104,6 +104,19 @@ router.get('/crear_vivienda',		(req,res) =>{
 
 	});
 })
+//Delete
+router.get('delete_persona/:id', (req,res) => {
+	const id =  req.params.id;
+	conexion.query('delete from persona where id = '+ id , (error,results) =>{
+		if(error){
+			console.log(error);
+		}else{
+			res.render('ver_personas');
+		}
+	}
+	)
+}
+)
 
 //Post
 router.post('/save_persona', crud.savep);
