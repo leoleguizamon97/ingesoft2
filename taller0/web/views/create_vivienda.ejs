@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es" data-bs-theme="dark">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Taller 0</title>
+	<link rel="icon" href="favicon.ico">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+
+<body class="overflow-hidden">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+	<style>
+		.b_ {
+			min-width: max-content;
+			max-height: min-content;
+			margin: 0px 3px ;
+		}
+
+		/* Copiado de internet */
+		.tableFixHead {
+			overflow: auto;
+			height: 90vh;
+		}
+
+		.tableFixHead thead th {
+			position: sticky;
+			top: 0;
+			z-index: 1;
+		}
+
+		.resa
+
+		/* Just common table stuff. Really. */
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+	</style>
+
+	<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+		<div class="container-fluid">
+			<a class="navbar-brand nav-link" href="/">
+				<img src="../logo.svg" width="30" height="30">
+				Taller 0
+			</a>
+			<div class="navbar-text">anlleguizamongu</div>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto">
+					<a class="nav-item">
+						<a class="nav-link mx-auto" aria-current="page" href="ver_personas">Personas</a>
+						<a class="nav-link mx-auto" aria-current="page" href="ver_municipios">Municipios</a>
+						<a class="nav-link mx-auto disabled" aria-current="page" href="ver_viviendas">Viviendas</a>
+						<a class="nav-link mx-auto" aria-current="page" href="ver_propietarios">Propietarios</a>
+					</a>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class=" mx-auto" style="overflow-y: auto; overflow-x: hidden; height: 85vh; width: 70vw; min-width: fit-content; text-align: center;">
+		<form class="mx-auto" action="/save_propietario" method="POST" id="formulario">
+			<legend class="text-center" style="margin: 5px; ">Crear Vivienda</legend>
+			<fieldset class="border rounded" style="margin: 5px; padding: 5px; text-align: center;">
+				<label class="form-label text-center">Informacion de Vivienda</label>
+				<input type="text"	name="direccion"	id="direccion"	class="form-control" style="margin: 5px 0px;" placeholder="Direccion" required>
+				<div class="d-flex">
+					<input type="number"	name="capacidad"	id="capacidad"	class="form-control"	placeholder="Capacidad" inputmode="numeric"	style="margin-right: 3px;"	required>
+					<input type="number"	name="niveles"		id="niveles"	class="form-control"	placeholder="Niveles" inputmode="numeric"	style="margin-right: 3px;"	required>
+				</div>
+
+
+
+
+				<label class="form-label text-center">Informacion de Propietario</label>
+
+				<div class="d-flex align-items-center justify-content-between">
+					<label style="margin: 0px 15px;" for="persona_id">Dueño</label>
+					<select type="number"	name="persona_id"	id="persona_id"	class="form-select w-75"	placeholder="Seleccione"	style="margin: 5px 0px;" required>
+						<option disabled selected value="">Dueño</option>
+
+					</select>
+				</div>
+			</fieldset>
+			<fieldset class="border rounded d-flex" style="margin: 5px; padding: 5px;">
+				<button type="submit"	href="/save_propietario"	class="b_ btn btn-outline-primary w-50">Confirmar <i class="bi bi-check2-circle"></i></button>
+				<button type="reset"	href="#"				class="b_ btn btn-outline-warning w-25"><i class="bi bi-stars"></i></button>
+				<a 						href="/ver_propietarios"	class="b_ btn btn-outline-danger w-25"><i class="bi bi-x-square"></i></i></a>
+			</fieldset>
+		</form>
+	</div>
+</body>
+</html>

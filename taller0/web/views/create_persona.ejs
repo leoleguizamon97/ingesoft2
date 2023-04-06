@@ -17,33 +17,6 @@
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 		crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<script>
-		// Copiado de internet
-		$(document).ready(() => {
-			$('th').each(function (columna) {
-				$(this).hover(function () {
-					$(this).addClass('bg-gradient');
-				}, function () {
-					$(this).removeClass('bg-gradient');
-				});
-
-				$(this).click(function () {
-					let registros = $('table').find('tbody > tr').get();
-
-					registros.sort(function (a, b) {
-						let valor1 = $(a).children('td').eq(columna).text().toUpperCase();
-						let valor2 = $(b).children('td').eq(columna).text().toUpperCase();
-
-						return valor1 < valor2 ? -1 : valor1 > valor2 ? 1 : 0;
-					});
-
-					$.each(registros, function (indice, elemento) {
-						$('tbody').append(elemento);
-					});
-				});
-			});
-		});
-	</script>
 
 	<style>
 		.b_ {
@@ -118,7 +91,7 @@
 			</fieldset>
 			<fieldset class="border rounded" style="margin: 5px; padding: 5px; text-align: center;">
 				<label class="form-label text-center">Informacion de vivienda</label>
-				<input type="tel"	name="telefono"	id="telefono"	class="form-control" style="margin: 5px 0px;" placeholder="Telefono" required>
+				<input type="number"	name="telefono"	id="telefono"	class="form-control" style="margin: 5px 0px;" placeholder="Telefono" required>
 				<div class="d-flex align-items-center justify-content-between">
 					<label style="margin: 0px 15px;" for="vivienda">Vivienda</label>
 					<select type="text"	name="vivienda"		id="vivienda"		class="form-select w-75"	placeholder="Seleccione" 	style="margin: 5px 0px;" required>

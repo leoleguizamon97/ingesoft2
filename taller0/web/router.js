@@ -28,7 +28,7 @@ router.get('/ver_municipios',	(req,res) =>{
 	})
 })
 router.get('/ver_propietarios',	(req,res) =>{
-	conexion.query('select po.*, p.nombre, p.apellido, v.direccion from propietarios po, persona p, vivienda v where po.persona_id = p.id and po.vivienda_id = v.id;',(error,results) => {
+	conexion.query('select po.*, p.nombre, p.apellido, v.direccion from propietarios po, persona p, vivienda v where po.persona_id = p.id and po.vivienda_id = v.id order by po.id',(error,results) => {
 		if(error){
 			throw error;
 		}else{
@@ -51,8 +51,7 @@ router.get('/ver_viviendas',	(req,res) =>{
 router.get('/crear_persona',		(req,res) =>{
 	var queries = [
 		'select p.id as p_id, p.nombre, p.apellido from persona p',
-		'select v.id as v_id, v.direccion from vivienda v order by direccion asc',
-		'select m.id as m_id, m.nombre as m_nombre from municipio m'
+		'select v.id as v_id, v.direccion from vivienda v order by direccion asc'
 	]
 	conexion.query(queries.join(';'), (error,results,fields)=>{
 		if(error){
@@ -65,16 +64,37 @@ router.get('/crear_persona',		(req,res) =>{
 	});
 })
 router.get('/crear_municipio',		(req,res) =>{
-	res.render('create_municipio');
+	conexion.query('select p.id as p_id, p.nombre, p.apellido from persona p left join municipio m on p.id = m.gobernador where m.gobernador is null', (error,results,fields)=>{
+		if(error){
+			console.log(error);
+		}else{
+			res.render('create_municipio',{
+				results:results});
+		}
+	});
 })
 router.get('/crear_propietario',	(req,res) =>{
-	res.render('create_propietario');
+	var queries = [
+		'select p.id as p_id, p.nombre, p.apellido from persona p',
+		'select v.id as v_id, v.direccion from vivienda v order by direccion asc'
+	]
+	conexion.query(queries.join(';'), (error,results,fields)=>{
+		if(error){
+			console.log(error);
+		}else{
+			res.render('create_propietario',{
+				results:results});
+		}
+	});
 })
 router.get('/crear_vivienda',		(req,res) =>{
+	//'select m.id as m_id, m.nombre as m_nombre from municipio m'
 	res.render('create_vivienda');
 })
 //Post
 router.post('/save_persona', crud.savep);
+router.post('/save_municipio', crud.savem);
+router.post('/save_propietario', crud.savepo);
 
 
 
