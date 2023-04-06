@@ -10,7 +10,7 @@ router.get('/', (req,res) =>{
 })
 //Router ver
 router.get('/ver_personas',		(req,res) =>{
-	conexion.query('SELECT * FROM persona',(error,results) => {
+	conexion.query('select p.id, p.nombre , p.apellido, p.edad, p.telefono, s.sexo, v.direccion, h.nombre as responsable_n from persona p, sexo s, vivienda v, persona h where p.sexo = s.id and p.vivienda = v.id and p.cabeza_hogar = h.id order by p.id asc',(error,results) => {
 		if(error){
 			throw error;
 		}else{
@@ -28,7 +28,7 @@ router.get('/ver_municipios',	(req,res) =>{
 	})
 })
 router.get('/ver_propietarios',	(req,res) =>{
-	conexion.query('SELECT * FROM propietarios',(error,results) => {
+	conexion.query('select po.*, p.nombre, p.apellido, v.direccion from propietarios po, persona p, vivienda v where po.persona_id = p.id and po.vivienda_id = v.id;',(error,results) => {
 		if(error){
 			throw error;
 		}else{
@@ -37,7 +37,8 @@ router.get('/ver_propietarios',	(req,res) =>{
 	})
 })
 router.get('/ver_viviendas',	(req,res) =>{
-	conexion.query('SELECT * FROM vivienda',(error,results) => {
+	var query = "SELECT	v.id, v.direccion, v.capacidad, v.niveles, po.persona_id as dueno, p.nombre, p.apellido, m.nombre as n_ubicacion, v.ubicacion from vivienda v left join propietarios po on v.id = po.vivienda_id left join persona p on p.id = po.persona_id left join municipio m on m.id = v.ubicacion inner join (select min(propietarios.id) as id from propietarios group by propietarios.vivienda_id)  fil on fil.id = po.id "
+	conexion.query(query,(error,results) => {
 		if(error){
 			throw error;
 		}else{
