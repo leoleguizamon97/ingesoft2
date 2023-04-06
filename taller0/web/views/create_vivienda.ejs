@@ -71,7 +71,7 @@
 		</div>
 	</nav>
 	<div class=" mx-auto" style="overflow-y: auto; overflow-x: hidden; height: 85vh; width: 70vw; min-width: fit-content; text-align: center;">
-		<form class="mx-auto" action="/save_propietario" method="POST" id="formulario">
+		<form class="mx-auto" action="/save_vivienda" method="POST" id="formulario">
 			<legend class="text-center" style="margin: 5px; ">Crear Vivienda</legend>
 			<fieldset class="border rounded" style="margin: 5px; padding: 5px; text-align: center;">
 				<label class="form-label text-center">Informacion de Vivienda</label>
@@ -80,24 +80,32 @@
 					<input type="number"	name="capacidad"	id="capacidad"	class="form-control"	placeholder="Capacidad" inputmode="numeric"	style="margin-right: 3px;"	required>
 					<input type="number"	name="niveles"		id="niveles"	class="form-control"	placeholder="Niveles" inputmode="numeric"	style="margin-right: 3px;"	required>
 				</div>
-
-
-
-
+			</fieldset>
+			<fieldset class="border rounded" style="margin: 5px; padding: 5px; text-align: center;">
 				<label class="form-label text-center">Informacion de Propietario</label>
-
+				<div class="d-flex align-items-center justify-content-between">
+					<label style="margin: 0px 15px;" for="ubicacion">Ubicacion</label>
+					<select type="text"	name="ubicacion"		id="ubicacion"		class="form-select w-75"	placeholder="Seleccione" 	style="margin: 5px 0px;" required>
+						<option disabled selected value="">Ubicacion</option>
+						<% results[1].forEach((ubicacion)=> { %>
+							<option value= <%= ubicacion.id %> ><%= ubicacion.nombre %></option>
+						<% }) %>
+					</select>
+				</div>
 				<div class="d-flex align-items-center justify-content-between">
 					<label style="margin: 0px 15px;" for="persona_id">Dueño</label>
 					<select type="number"	name="persona_id"	id="persona_id"	class="form-select w-75"	placeholder="Seleccione"	style="margin: 5px 0px;" required>
 						<option disabled selected value="">Dueño</option>
-
+						<% results[0].forEach((persona)=> { %>
+							<option value= <%= persona.p_id %> > <%= persona.p_id %> -- <%= persona.nombre %></option>
+						<% }) %>
 					</select>
 				</div>
 			</fieldset>
 			<fieldset class="border rounded d-flex" style="margin: 5px; padding: 5px;">
-				<button type="submit"	href="/save_propietario"	class="b_ btn btn-outline-primary w-50">Confirmar <i class="bi bi-check2-circle"></i></button>
+				<button type="submit"	href="/save_vivienda"	class="b_ btn btn-outline-primary w-50">Confirmar <i class="bi bi-check2-circle"></i></button>
 				<button type="reset"	href="#"				class="b_ btn btn-outline-warning w-25"><i class="bi bi-stars"></i></button>
-				<a 						href="/ver_propietarios"	class="b_ btn btn-outline-danger w-25"><i class="bi bi-x-square"></i></i></a>
+				<a 						href="/ver_viviendas"	class="b_ btn btn-outline-danger w-25"><i class="bi bi-x-square"></i></i></a>
 			</fieldset>
 		</form>
 	</div>

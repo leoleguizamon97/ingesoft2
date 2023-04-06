@@ -2,6 +2,37 @@ const { error } = require('jquery');
 const conexion = require('../database/db');
 const { query } = require('express');
 
+exports.savev = (req,res) => {
+	const direccion		= req.body.direccion;
+	const capacidad		= req.body.capacidad;
+	const niveles		= req.body.niveles;
+	const ubicacion		= req.body.ubicacion;
+	const persona_id 	= req.body.persona_id;
+
+	let query0 = ('INSERT INTO vivienda (direccion,capacidad,niveles,ubicacion) VALUES ("'+direccion+'","'+capacidad+'","'+niveles+'","'+ubicacion+'");SELECT LAST_INSERT_ID() as id')
+	console.log('Se creo la vivienda ' + direccion +' ub '+ ubicacion);
+	conexion.query(query0, (error,results)=>{
+		if(error){
+			console.log(error);
+		}else{
+			var string=JSON.stringify(results);
+			var json =  JSON.parse(string);
+
+			console.log('Se creo el propietario ' + persona_id +' ar '+ json[0].insertId);
+
+			let query1 = ('INSERT INTO propietarios (persona_id,vivienda_id) VALUES ("'+persona_id+'","'+json[0].insertId+'")')
+			conexion.query(query1, (error,results)=>{
+				if(error){
+					console.log(error);
+				}else{
+					console.log('Se creo el propietario ' + persona_id +' ar '+ json[0].insertId);
+				}
+			});
+			res.redirect('ver_viviendas');
+		}
+	});
+}
+
 exports.savepo = (req,res) => {
 	const persona_id		= req.body.persona_id;
 	const vivienda_id		= req.body.vivienda_id;
@@ -16,8 +47,6 @@ exports.savepo = (req,res) => {
 		}
 	});
 }
-
-
 
 exports.savem = (req,res) => {
 	const nombre		= req.body.nombre;

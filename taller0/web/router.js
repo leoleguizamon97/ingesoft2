@@ -88,14 +88,25 @@ router.get('/crear_propietario',	(req,res) =>{
 	});
 })
 router.get('/crear_vivienda',		(req,res) =>{
-	//'select m.id as m_id, m.nombre as m_nombre from municipio m'
-	res.render('create_vivienda');
+	var queries = [
+		'select p.id as p_id, p.nombre, p.apellido from persona p',
+		'SELECT id, nombre FROM taller_0.municipio order by id;'
+	]
+	conexion.query(queries.join(';'), (error,results,fields)=>{
+		if(error){
+			console.log(error);
+		}else{
+			res.render('create_vivienda',{
+				results:results});
+		}
+
+	});
 })
 //Post
 router.post('/save_persona', crud.savep);
 router.post('/save_municipio', crud.savem);
 router.post('/save_propietario', crud.savepo);
-
+router.post('/save_vivienda', crud.savev);
 
 
 
