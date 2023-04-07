@@ -74,7 +74,6 @@ exports.select_up = (req,res)=>{
 	}		
 	)
 }
-
 exports.select_um = (req,res) => {
 	const id = req.params.id;
 	var queries = [
@@ -86,6 +85,39 @@ exports.select_um = (req,res) => {
 			throw error;
 		}else{
 			res.render('edit_municipio', {results:results});
+		}
+	})
+}
+exports.select_uv  = (req,res) => {
+	const id = req.params.id;
+	var queries = [
+		'SELECT id, nombre FROM municipio order by id',
+		'select * from vivienda where id= ' + id
+
+	]
+	conexion.query(queries.join(';'), (error,results,fields)=>{
+		if(error){
+			console.log(error);
+		}else{
+			res.render('edit_vivienda',{results:results});
+		}
+
+	});
+}
+exports.select_upo = (req,res) => {
+	const id = req.params.id;
+	var queries = [
+		'select p.id as p_id, p.nombre, p.apellido from persona p',
+		'select v.id as v_id, v.direccion from vivienda v order by direccion asc',
+		'select * from propietarios where id= ' + id
+
+	]
+	conexion.query(queries.join(';'),(error,results) => {
+		if(error){
+			throw error;
+		}else{
+
+			res.render('edit_propietario', {results:results});
 		}
 	})
 }
@@ -111,7 +143,6 @@ exports.editp = (req,res)=> {
 		}
 	});
 }
-
 exports.editm = (req,res) => {
 	const id 			= req.body.id;
 	const nombre		= req.body.nombre;
@@ -130,7 +161,39 @@ exports.editm = (req,res) => {
 		}
 	});
 }
+exports.editv = (req,res) => {
+	const id			= req.body.id;
+	const direccion		= req.body.direccion;
+	const capacidad		= req.body.capacidad;
+	const niveles		= req.body.niveles;
+	const ubicacion		= req.body.ubicacion;
 
+	let query0 = ('update vivienda set direccion ="'+direccion+'", capacidad ="'+capacidad+'", niveles= "'+niveles+'", ubicacion = "'+ubicacion+'" where id = '+id)
+	conexion.query(query0, (error,results)=>{
+		if(error){
+			console.log(error);
+		}else{
+			console.log('Se edito la vivienda id: '+id+' dir ' + direccion +' ub '+ ubicacion);
+			res.redirect('ver_viviendas');
+		}
+	});
+}
+exports.editpo = (req,res) => {
+	const id			= req.body.id;
+	const persona_id	= req.body.persona_id;
+	const vivienda_id	= req.body.vivienda_id;
+	
+	let query0 = ('update propietarios set  persona_id ="'+persona_id+'", vivienda_id ="'+vivienda_id+'" where id = '+id)
+	
+	conexion.query(query0, (error,results)=>{
+		if(error){
+			console.log(error);
+		}else{
+			console.log('Se edito el propietario ' + persona_id +' ar '+ vivienda_id);
+			res.redirect('ver_propietarios');
+		}
+	});
+}
 
 //INSERT
 exports.savev = (req,res) => {
@@ -141,16 +204,13 @@ exports.savev = (req,res) => {
 	const persona_id 	= req.body.persona_id;
 
 	let query0 = ('INSERT INTO vivienda (direccion,capacidad,niveles,ubicacion) VALUES ("'+direccion+'","'+capacidad+'","'+niveles+'","'+ubicacion+'");SELECT LAST_INSERT_ID() as id')
-	console.log('Se creo la vivienda ' + direccion +' ub '+ ubicacion);
 	conexion.query(query0, (error,results)=>{
 		if(error){
 			console.log(error);
 		}else{
 			var string=JSON.stringify(results);
 			var json =  JSON.parse(string);
-
-			console.log('Se creo el propietario ' + persona_id +' ar '+ json[0].insertId);
-
+			console.log('Se creo la vivienda ' + direccion +' ub '+ ubicacion);
 			let query1 = ('INSERT INTO propietarios (persona_id,vivienda_id) VALUES ("'+persona_id+'","'+json[0].insertId+'")')
 			conexion.query(query1, (error,results)=>{
 				if(error){

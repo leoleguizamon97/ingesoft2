@@ -87,7 +87,7 @@
 					<select type="number"	name="persona_id"	id="persona_id"	class="form-select w-75"	placeholder="Seleccione"	style="margin: 5px 0px;" required>
 						<option disabled selected value="">Dueño</option>
 						<% results[0].forEach((persona)=> { %>
-							<option value= <%= persona.p_id %> > <%= persona.p_id %> -- <%= persona.nombre %></option>
+							<option value= <%= persona.p_id %> > <%= persona.p_id %> -- <%= persona.nombre %> <%= persona.apellido %></option>
 						<% }) %>
 					</select>
 				</div>

@@ -37,13 +37,13 @@ router.post('/save_vivienda',	crud.savev);
 //Actualizar
 router.post('/update_persona',		crud.editp);
 router.post('/update_municipio',	crud.editm);
-//router.post('/update_propietario',	crud.editpo);
-//router.post('/update_vivienda',		crud.editv);
+router.post('/update_propietario',	crud.editpo);
+router.post('/update_vivienda',		crud.editv);
 
 //Edit
 router.get('/edit_persona/:id',		crud.select_up);
 router.get('/edit_municipio/:id',	crud.select_um);
-//router.get('/edit_propietario/:id', crud.select_upo);
-//router.get('/edit_vivienda/:id',	crud.select_uv);
+router.get('/edit_propietario/:id', crud.select_upo);
+router.get('/edit_vivienda/:id',	crud.select_uv);
 
 module.exports = router
