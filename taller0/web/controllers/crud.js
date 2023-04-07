@@ -24,6 +24,11 @@ exports.editp = (req,res)=> {
 	});
 }
 
+
+
+
+
+//INSERT
 exports.savev = (req,res) => {
 	const direccion		= req.body.direccion;
 	const capacidad		= req.body.capacidad;
