@@ -59,9 +59,9 @@
 				<ul class="navbar-nav ms-auto">
 					<a class="nav-item">
 						<a class="nav-link mx-auto disabled" aria-current="page" href="ver_personas">Personas</a>
-						<a class="nav-link mx-auto" aria-current="page" href="ver_municipios">Municipios</a>
-						<a class="nav-link mx-auto" aria-current="page" href="ver_viviendas">Viviendas</a>
-						<a class="nav-link mx-auto" aria-current="page" href="ver_propietarios">Propietarios</a>
+						<a class="nav-link mx-auto disabled" aria-current="page" href="ver_municipios">Municipios</a>
+						<a class="nav-link mx-auto disabled" aria-current="page" href="ver_viviendas">Viviendas</a>
+						<a class="nav-link mx-auto disabled" aria-current="page" href="ver_propietarios">Propietarios</a>
 					</a>
 				</ul>
 			</div>
@@ -83,7 +83,7 @@
 							<option disabled selected value="">Sexo</option>
 							<option value=1 <%= results[2][0].sexo ==  1  ? "selected" : "" %>>Masculino</option>
 							<option value=2	<%= results[2][0].sexo ==  2  ? "selected" : "" %>>Femenino</option>
-							<option value=3 <%= results[2][0].sexo ==  2  ? "selected" : "" %>>Otro</option>
+							<option value=3 <%= results[2][0].sexo ==  3  ? "selected" : "" %>>Otro</option>
 						</select>
 					</div>
 				</div>

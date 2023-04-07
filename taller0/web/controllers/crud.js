@@ -63,19 +63,32 @@ exports.select_up = (req,res)=>{
 	var queries = [
 		'select p.id as p_id, p.nombre, p.apellido from persona p',
 		'select v.id as v_id, v.direccion from vivienda v order by direccion asc',
-		'select * from persona where id= '+ id
+		'select * from persona where id = '+ id
 	]
 	conexion.query(queries.join(';'), (error,results)=>{
 		if(error){
 			console.log(error);
 		}else{
-			console.log(results[2])
 			res.render('edit_persona',{results:results});
 		}
 	}		
 	)
 }
 
+exports.select_um = (req,res) => {
+	const id = req.params.id;
+	var queries = [
+		'select p.id as p_id, p.nombre, p.apellido from persona p left join municipio m on p.id = m.gobernador where m.gobernador is null or m.gobernador = '+id,
+		'select * from municipio where id= ' + id,
+	]
+	conexion.query(queries.join(';'),(error,results) => {
+		if(error){
+			throw error;
+		}else{
+			res.render('edit_municipio', {results:results});
+		}
+	})
+}
 
 
 //UPDATE
@@ -99,6 +112,24 @@ exports.editp = (req,res)=> {
 	});
 }
 
+exports.editm = (req,res) => {
+	const id 			= req.body.id;
+	const nombre		= req.body.nombre;
+	const area			= req.body.area;
+	const presupuesto	= req.body.presupuesto;
+	const gobernador	= req.body.gobernador;
+
+	let query = ('update municipio set nombre="'+nombre+'", area ="'+area+'", presupuesto= "'+presupuesto+'", gobernador = "'+gobernador+'" where id = '+id)
+
+	conexion.query(query, (error,results)=>{
+		if(error){
+			console.log(error);
+		}else{
+			console.log('Se Actualizo el municipio ' + nombre +' ar '+ area+' pre ' + presupuesto +' gob ' + gobernador);
+			res.redirect('ver_municipios');
+		}
+	});
+}
 
 
 //INSERT

@@ -17,16 +17,16 @@ router.get('/ver_propietarios',	crud.verpo);
 router.get('/ver_viviendas',	crud.verv);
 
 //Crear
-router.get('/crear_persona', crud.createp);
-router.get('/crear_municipio', crud.createm);
+router.get('/crear_persona',	crud.createp);
+router.get('/crear_municipio',	crud.createm);
 router.get('/crear_propietario',crud.createpo);
-router.get('/crear_vivienda', crud.createv)
+router.get('/crear_vivienda',	crud.createv)
 
 //Eliminar
-router.get('/delete_persona/:id', crud.deletep);
-router.get('/delete_vivienda/:id', crud.deletev);
-router.get('/delete_municipio/:id', crud.deletem);
-router.get('/delete_propietario/:id', crud.deletepo);
+router.get('/delete_persona/:id',		crud.deletep);
+router.get('/delete_vivienda/:id',		crud.deletev);
+router.get('/delete_municipio/:id',		crud.deletem);
+router.get('/delete_propietario/:id',	crud.deletepo);
 
 //Guardar
 router.post('/save_persona', 	crud.savep);
@@ -35,9 +35,15 @@ router.post('/save_propietario',crud.savepo);
 router.post('/save_vivienda',	crud.savev);
 
 //Actualizar
-router.post('/update_persona',crud.editp);
+router.post('/update_persona',		crud.editp);
+router.post('/update_municipio',	crud.editm);
+//router.post('/update_propietario',	crud.editpo);
+//router.post('/update_vivienda',		crud.editv);
 
 //Edit
-router.get('/edit_persona/:id', crud.select_up);
+router.get('/edit_persona/:id',		crud.select_up);
+router.get('/edit_municipio/:id',	crud.select_um);
+//router.get('/edit_propietario/:id', crud.select_upo);
+//router.get('/edit_vivienda/:id',	crud.select_uv);
 
 module.exports = router
