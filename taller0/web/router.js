@@ -134,12 +134,11 @@ router.get('/edit_persona/:id', (req,res)=>{
 		'select v.id as v_id, v.direccion from vivienda v order by direccion asc',
 		'select * from persona where id= '+ id
 	]
-
+	console.log(queries[2])
 	conexion.query(queries.join(';'), (error,results)=>{
 		if(error){
 			console.log(error);
 		}else{
-			console.log(results)
 			res.render('edit_persona',{results:results});
 		}
 	}		
