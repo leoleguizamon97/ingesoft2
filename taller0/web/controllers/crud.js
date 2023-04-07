@@ -2,8 +2,83 @@ const { error } = require('jquery');
 const conexion = require('../database/db');
 const { query } = require('express');
 
-//UPDATE
+//CREATE
+exports.createp  = (req,res) =>{
+	var queries = [
+		'select p.id as p_id, p.nombre, p.apellido from persona p',
+		'select v.id as v_id, v.direccion from vivienda v order by direccion asc'
+	]
+	conexion.query(queries.join(';'), (error,results,fields)=>{
+		if(error){
+			console.log(error);
+		}else{
+			res.render('create_persona',{results:results});
+		}
 
+	});
+}
+exports.createv  = (req,res) =>{
+	var queries = [
+		'select p.id as p_id, p.nombre, p.apellido from persona p',
+		'SELECT id, nombre FROM taller_0.municipio order by id;'
+	]
+	conexion.query(queries.join(';'), (error,results,fields)=>{
+		if(error){
+			console.log(error);
+		}else{
+			res.render('create_vivienda',{
+				results:results});
+		}
+
+	});
+}
+exports.createm  = (req,res) =>{
+	conexion.query('select p.id as p_id, p.nombre, p.apellido from persona p left join municipio m on p.id = m.gobernador where m.gobernador is null', (error,results,fields)=>{
+		if(error){
+			console.log(error);
+		}else{
+			res.render('create_municipio',{
+				results:results});
+		}
+	});
+}
+exports.createpo = (req,res) =>{
+	var queries = [
+		'select p.id as p_id, p.nombre, p.apellido from persona p',
+		'select v.id as v_id, v.direccion from vivienda v order by direccion asc'
+	]
+	conexion.query(queries.join(';'), (error,results,fields)=>{
+		if(error){
+			console.log(error);
+		}else{
+			res.render('create_propietario',{
+				results:results});
+		}
+	});
+}
+
+//SELECT-Update
+exports.select_up = (req,res)=>{
+	const id = req.params.id;
+	var queries = [
+		'select p.id as p_id, p.nombre, p.apellido from persona p',
+		'select v.id as v_id, v.direccion from vivienda v order by direccion asc',
+		'select * from persona where id= '+ id
+	]
+	conexion.query(queries.join(';'), (error,results)=>{
+		if(error){
+			console.log(error);
+		}else{
+			console.log(results[2])
+			res.render('edit_persona',{results:results});
+		}
+	}		
+	)
+}
+
+
+
+//UPDATE
 exports.editp = (req,res)=> {
 	const id 			= req.body.id;
 	const nombre		= req.body.nombre;
@@ -23,8 +98,6 @@ exports.editp = (req,res)=> {
 		}
 	});
 }
-
-
 
 
 
@@ -59,7 +132,6 @@ exports.savev = (req,res) => {
 		}
 	});
 }
-
 exports.savepo = (req,res) => {
 	const persona_id		= req.body.persona_id;
 	const vivienda_id		= req.body.vivienda_id;
@@ -74,7 +146,6 @@ exports.savepo = (req,res) => {
 		}
 	});
 }
-
 exports.savem = (req,res) => {
 	const nombre		= req.body.nombre;
 	const area			= req.body.area;
@@ -92,7 +163,6 @@ exports.savem = (req,res) => {
 		}
 	});
 }
-
 exports.savep = (req,res) => {
 	const nombre		= req.body.nombre;
 	const apellido		= req.body.apellido;
@@ -115,7 +185,6 @@ exports.savep = (req,res) => {
 }
 
 //SELECT
-
 exports.verp = (req,res) => {
 	conexion.query('select p.id, p.nombre , p.apellido, p.edad, p.telefono, s.sexo, v.direccion, h.nombre as responsable_n from persona p, sexo s, vivienda v, persona h where p.sexo = s.id and p.vivienda = v.id and p.cabeza_hogar = h.id order by p.id asc',(error,results) => {
 		if(error){
@@ -125,9 +194,8 @@ exports.verp = (req,res) => {
 		}
 	})
 }
-
 exports.verv = (req,res) => {
-	var query = "select * from viviendas_con_dueno union table viviendas_sin_dueno"
+	var query = "select * from viviendas_con_dueno union table viviendas_sin_dueno order by id"
 	conexion.query(query,(error,results) => {
 		if(error){
 			throw error;
@@ -136,7 +204,6 @@ exports.verv = (req,res) => {
 		}
 	})
 }
-
 exports.verm = (req,res) => {
 	conexion.query('select m.*, p.nombre as gobernador_n, p.apellido as gobernador_a from municipio m left join	persona p on m.gobernador = p.id;',(error,results) => {
 		if(error){
@@ -146,7 +213,6 @@ exports.verm = (req,res) => {
 		}
 	})
 }
-
 exports.verpo = (req,res) => {
 	conexion.query('select po.*, p.nombre, p.apellido, v.direccion from propietarios po, persona p, vivienda v where po.persona_id = p.id and po.vivienda_id = v.id order by po.id',(error,results) => {
 		if(error){
@@ -158,7 +224,6 @@ exports.verpo = (req,res) => {
 }
 
 //DELETE
-
 exports.deletep = (req,res) => {
 	const id =  req.params.id;
 	conexion.query('delete from persona where id = '+ id , (error,results) =>{
@@ -171,7 +236,6 @@ exports.deletep = (req,res) => {
 	}
 	)
 }
-
 exports.deletem = (req,res) => {
 	const id =  req.params.id;
 	conexion.query('delete from municipio where id = '+ id , (error,results) =>{
@@ -184,7 +248,6 @@ exports.deletem = (req,res) => {
 	}
 	)
 }
-
 exports.deletepo = (req,res) => {
 	const id =  req.params.id;
 	conexion.query('delete from propietarios where id = '+ id , (error,results) =>{
@@ -197,7 +260,6 @@ exports.deletepo = (req,res) => {
 	}
 	)
 }
-
 exports.deletev = (req,res) => {
 	const id =  req.params.id;
 	conexion.query('delete from vivienda where id = '+ id , (error,results) =>{
