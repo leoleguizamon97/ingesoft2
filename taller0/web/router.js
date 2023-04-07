@@ -72,6 +72,9 @@ router.get('/crear_vivienda',		(req,res) =>{
 })
 //Delete
 router.get('/delete_persona/:id', crud.deletep);
+router.get('/delete_vivienda/:id', crud.deletev);
+router.get('/delete_municipio/:id', crud.deletem);
+router.get('/delete_propietario/:id', crud.deletepo);
 
 //Post
 router.post('/save_persona', 	crud.savep);

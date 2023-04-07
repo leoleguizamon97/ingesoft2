@@ -2,6 +2,8 @@ const { error } = require('jquery');
 const conexion = require('../database/db');
 const { query } = require('express');
 
+//UPDATE
+
 exports.editp = (req,res)=> {
 	const id 			= req.body.id;
 	const nombre		= req.body.nombre;
@@ -107,6 +109,8 @@ exports.savep = (req,res) => {
 	
 }
 
+//SELECT
+
 exports.verp = (req,res) => {
 	conexion.query('select p.id, p.nombre , p.apellido, p.edad, p.telefono, s.sexo, v.direccion, h.nombre as responsable_n from persona p, sexo s, vivienda v, persona h where p.sexo = s.id and p.vivienda = v.id and p.cabeza_hogar = h.id order by p.id asc',(error,results) => {
 		if(error){
@@ -118,7 +122,7 @@ exports.verp = (req,res) => {
 }
 
 exports.verv = (req,res) => {
-	var query = "SELECT	v.id, v.direccion, v.capacidad, v.niveles, po.persona_id as dueno, p.nombre, p.apellido, m.nombre as n_ubicacion, v.ubicacion from vivienda v left join propietarios po on v.id = po.vivienda_id left join persona p on p.id = po.persona_id left join municipio m on m.id = v.ubicacion inner join (select min(propietarios.id) as id from propietarios group by propietarios.vivienda_id)  fil on fil.id = po.id "
+	var query = "select * from viviendas_con_dueno union table viviendas_sin_dueno"
 	conexion.query(query,(error,results) => {
 		if(error){
 			throw error;
@@ -148,14 +152,55 @@ exports.verpo = (req,res) => {
 	})
 }
 
+//DELETE
+
 exports.deletep = (req,res) => {
 	const id =  req.params.id;
-	console.log('delete from persona where id = '+ id )
 	conexion.query('delete from persona where id = '+ id , (error,results) =>{
 		if(error){
 			console.log(error);
 		}else{
+			console.log('Se elimino la persona con ID' + id);
 			res.redirect('/ver_personas')
+		}
+	}
+	)
+}
+
+exports.deletem = (req,res) => {
+	const id =  req.params.id;
+	conexion.query('delete from municipio where id = '+ id , (error,results) =>{
+		if(error){
+			console.log(error);
+		}else{
+			console.log('Se elimino el municipio con ID' + id);
+			res.redirect('/ver_municipios')
+		}
+	}
+	)
+}
+
+exports.deletepo = (req,res) => {
+	const id =  req.params.id;
+	conexion.query('delete from propietarios where id = '+ id , (error,results) =>{
+		if(error){
+			console.log(error);
+		}else{
+			console.log('Se elimino el propietario con ID' + id);
+			res.redirect('/ver_propietarios')
+		}
+	}
+	)
+}
+
+exports.deletev = (req,res) => {
+	const id =  req.params.id;
+	conexion.query('delete from vivienda where id = '+ id , (error,results) =>{
+		if(error){
+			console.log(error);
+		}else{
+			console.log('Se elimino la vivienda con ID' + id);
+			res.redirect('/ver_viviendas')
 		}
 	}
 	)
