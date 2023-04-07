@@ -11,7 +11,6 @@ exports.editp = (req,res)=> {
 	const telefono		= req.body.telefono;
 	const vivienda		= req.body.vivienda;
 	const cabeza_hogar	= req.body.cabeza_hogar;
-	console.log('Se edito el usuario con ID: ' + id +' ap '+ nombre);
 	let query = ('update persona set nombre="'+nombre+'",apellido="'+apellido+'", edad= "'+edad+'", telefono = "'+telefono+'", sexo = "'+sexo+'", vivienda = "'+vivienda+'", cabeza_hogar = "'+cabeza_hogar+'" where id ='+id )
 	conexion.query(query,(error,results)=>{
 		if(error){
@@ -22,9 +21,6 @@ exports.editp = (req,res)=> {
 		}
 	});
 }
-
-
-
 
 exports.savev = (req,res) => {
 	const direccion		= req.body.direccion;
@@ -109,4 +105,45 @@ exports.savep = (req,res) => {
 		}
 	});
 	
+}
+
+exports.verp = (req,res) => {
+	conexion.query('select p.id, p.nombre , p.apellido, p.edad, p.telefono, s.sexo, v.direccion, h.nombre as responsable_n from persona p, sexo s, vivienda v, persona h where p.sexo = s.id and p.vivienda = v.id and p.cabeza_hogar = h.id order by p.id asc',(error,results) => {
+		if(error){
+			throw error;
+		}else{
+			res.render('ver_personas', {results:results});
+		}
+	})
+}
+
+exports.verv = (req,res) => {
+	var query = "SELECT	v.id, v.direccion, v.capacidad, v.niveles, po.persona_id as dueno, p.nombre, p.apellido, m.nombre as n_ubicacion, v.ubicacion from vivienda v left join propietarios po on v.id = po.vivienda_id left join persona p on p.id = po.persona_id left join municipio m on m.id = v.ubicacion inner join (select min(propietarios.id) as id from propietarios group by propietarios.vivienda_id)  fil on fil.id = po.id "
+	conexion.query(query,(error,results) => {
+		if(error){
+			throw error;
+		}else{
+			res.render('ver_viviendas', {results:results});
+		}
+	})
+}
+
+exports.verm = (req,res) => {
+	conexion.query('select m.*, p.nombre as gobernador_n, p.apellido as gobernador_a from municipio m left join	persona p on m.gobernador = p.id;',(error,results) => {
+		if(error){
+			throw error;
+		}else{
+			res.render('ver_municipios', {results:results});
+		}
+	})
+}
+
+exports.verpo = (req,res) => {
+	conexion.query('select po.*, p.nombre, p.apellido, v.direccion from propietarios po, persona p, vivienda v where po.persona_id = p.id and po.vivienda_id = v.id order by po.id',(error,results) => {
+		if(error){
+			throw error;
+		}else{
+			res.render('ver_propietarios', {results:results});
+		}
+	})
 }
