@@ -11,10 +11,10 @@ router.get('/', (req,res) =>{
 })
 
 //Read
-router.get('/ver_personas',	crud.verp)
-router.get('/ver_municipios', crud.verm)
+router.get('/ver_personas',		crud.verp)
+router.get('/ver_municipios',	crud.verm)
 router.get('/ver_propietarios',	crud.verpo)
-router.get('/ver_viviendas', crud.verv)
+router.get('/ver_viviendas',	crud.verv)
 
 //Create
 router.get('/crear_persona',		(req,res) =>{
@@ -26,8 +26,7 @@ router.get('/crear_persona',		(req,res) =>{
 		if(error){
 			console.log(error);
 		}else{
-			res.render('create_persona',{
-				results:results});
+			res.render('create_persona',{results:results});
 		}
 
 	});
@@ -72,24 +71,13 @@ router.get('/crear_vivienda',		(req,res) =>{
 	});
 })
 //Delete
-router.get('/delete_persona/:id', (req,res) => {
-	const id =  req.params.id;
-	conexion.query('delete from persona where id = '+ id , (error,results) =>{
-		if(error){
-			console.log(error);
-		}else{
-			
-		}
-	}
-	)
-}
-)
+router.get('/delete_persona/:id', crud.deletep);
 
 //Post
-router.post('/save_persona', crud.savep);
-router.post('/save_municipio', crud.savem);
-router.post('/save_propietario', crud.savepo);
-router.post('/save_vivienda', crud.savev);
+router.post('/save_persona', 	crud.savep);
+router.post('/save_municipio',	crud.savem);
+router.post('/save_propietario',crud.savepo);
+router.post('/save_vivienda',	crud.savev);
 
 router.post('/update_persona',crud.editp);
 

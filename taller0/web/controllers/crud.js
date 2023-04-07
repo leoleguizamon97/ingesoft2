@@ -147,3 +147,16 @@ exports.verpo = (req,res) => {
 		}
 	})
 }
+
+exports.deletep = (req,res) => {
+	const id =  req.params.id;
+	console.log('delete from persona where id = '+ id )
+	conexion.query('delete from persona where id = '+ id , (error,results) =>{
+		if(error){
+			console.log(error);
+		}else{
+			res.redirect('/ver_personas')
+		}
+	}
+	)
+}
