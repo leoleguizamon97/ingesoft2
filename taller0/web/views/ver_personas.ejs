@@ -96,29 +96,29 @@
 		<table class="table table-dark align-middle table-striped table-sm ">
 			<thead class="">
 				<tr>
-					<th class="text-center" scope="col">ID</th>
-					<th class="text-center" scope="col">Nombre</th>
-					<th class="text-center" scope="col">Apellido</th>
-					<th class="text-center" scope="col">Edad</th>
-					<th class="text-center" scope="col">Telefono</th>
-					<th class="text-center" scope="col">Sexo</th>
-					<th class="text-center" scope="col">Vivienda</th>
-					<th class="text-center" scope="col">Responsable</th>
-					<th class="text-center" scope="col" style="width: 10vw;">Acciones</th>
+					<th class="b_ text-center" scope="col">ID</th>
+					<th class="b_ text-center" scope="col">Nombre</th>
+					<th class="b_ text-center" scope="col">Apellido</th>
+					<th class="b_ text-center" scope="col">Edad</th>
+					<th class="b_ text-center" scope="col">Telefono</th>
+					<th class="b_ text-center" scope="col">Sexo</th>
+					<th class="b_ text-center" scope="col">Vivienda</th>
+					<th class="b_ text-center" scope="col">Responsable</th>
+					<th class="b_ text-center" scope="col" style="width: 10vw;">Acciones</th>
 				</tr>
 			</thead>
 			<tbody class="table-group-divider">
 				<% results.forEach((persona)=> { %>
 					<tr>
-						<td class="text-center"><%= persona.id %></td>
-						<td class="text-start"><%= persona.nombre %></td>
-						<td class="text-start"><%= persona.apellido %></td>
-						<td class="text-center"><%= persona.edad %></td>
-						<td class="text-center"><%= persona.telefono %></td>
-						<td class="text-start"><%= persona.sexo %></td>
-						<td class="text-start"><%= persona.direccion %></td>
-						<td class="text-center"><%= persona.responsable_n %></td>
-						<td class="d-flex align-content-between align-items-center">
+						<td class="b_ text-center"><%= persona.id %></td>
+						<td class="b_ text-start"><%= persona.nombre %></td>
+						<td class="b_ text-start"><%= persona.apellido %></td>
+						<td class="b_ text-center"><%= persona.edad %></td>
+						<td class="b_ text-center"><%= persona.telefono %></td>
+						<td class="b_ text-start"><%= persona.sexo %></td>
+						<td class="b_ text-start"><%= persona.direccion %></td>
+						<td class="b_ text-center"><%= persona.responsable_n %></td>
+						<td class="b_ d-flex align-content-between align-items-center">
 							<a href="/edit_persona/<%= persona.id %>"class="b_ w-75 btn btn-outline-info">
 								<i>Edit</i>
 								<i class="bi bi-pencil-square"></i>

@@ -96,25 +96,25 @@
 		<table class="table table-dark align-middle table-striped table-sm">
 			<thead class="">
 				<tr>
-					<th class="text-center" scope="col">ID</th>
-					<th class="text-center" scope="col">Dirección</th>
-					<th class="text-center" scope="col">Capacidad</th>
-					<th class="text-center" scope="col">Niveles</th>
-					<th class="text-center" scope="col">Ubicacion</th>
-					<th class="text-center" scope="col">Primer Dueño</th>
-					<th class="text-center" scope="col" style="width: 10vw;">Acciones</th>
+					<th class="b_ text-center" scope="col">ID</th>
+					<th class="b_ text-center" scope="col">Dirección</th>
+					<th class="b_ text-center" scope="col">Capacidad</th>
+					<th class="b_ text-center" scope="col">Niveles</th>
+					<th class="b_ text-center" scope="col">Ubicacion</th>
+					<th class="b_ text-center" scope="col">Primer Dueño</th>
+					<th class="b_ text-center" scope="col" style="width: 10vw;">Acciones</th>
 				</tr>
 			</thead>
 			<tbody class="table-group-divider">
 				<% results.forEach((vivienda)=> { %>
 					<tr>
-						<td class="text-center"><%= vivienda.id %></td>
-						<td class="text-start"><%= vivienda.direccion %></td>
-						<td class="text-center"><%= vivienda.capacidad %></td>
-						<td class="text-center"><%= vivienda.niveles %></td>
-						<td class="text-start"><%= vivienda.n_ubicacion %></td>
-						<td class="text-start"><%= vivienda.dueno %> - <%= vivienda.nombre %> <%= vivienda.apellido %></td>
-						<td class="d-flex align-content-between align-items-center">
+						<td class="b_ text-center"><%= vivienda.id %></td>
+						<td class="b_ text-start"><%= vivienda.direccion %></td>
+						<td class="b_ text-center"><%= vivienda.capacidad %></td>
+						<td class="b_ text-center"><%= vivienda.niveles %></td>
+						<td class="b_ text-start"><%= vivienda.n_ubicacion %></td>
+						<td class="b_ text-start"><%= vivienda.dueno %> - <%= vivienda.nombre %> <%= vivienda.apellido %></td>
+						<td class="b_ d-flex align-content-between align-items-center">
 							<a href="/edit_vivienda/<%= vivienda.id %>"class="b_ w-75 btn btn-outline-info">
 								<i>Edit</i>
 								<i class="bi bi-pencil-square"></i>
