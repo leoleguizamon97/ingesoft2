@@ -12,7 +12,7 @@ app.use(express.static(__dirname + '/imagenes'));
 //Usa el router
 app.use('/', require('./router'));
 //Puerto de prueba
-app.listen(8000, ()=>{
-	console.log('server rruning en http://localhost:8000');
+app.listen(8001, ()=>{
+	console.log('server rruning en http://localhost:8001');
 });
 
