@@ -1,8 +1,9 @@
 <template>
-  <div class="row">
+  <div class="flex">
     <Course v-for="enrolled in enrollments"
             :key="enrolled.courseId + '-' + enrolled.role.id"
-            :enrolled="enrolled"></Course>
+            :enrolled="enrolled">
+	</Course>
   </div>
 </template>
 
@@ -10,7 +11,6 @@
 import axios from 'axios';
 import {getAuthenticationToken} from '@/dataStorage';
 import Course from "@/components/Course";
-
 
 const requestPath = '/mis-cursos';
 
@@ -36,7 +36,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

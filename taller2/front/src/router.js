@@ -7,6 +7,9 @@ import AddRole from "./components/AddRole";
 import Courses from '@/views/Courses';
 import Roles from "@/components/Roles";
 
+import Profesores from "./views/Profesores";
+import AddCurso from "./components/AddCurso";
+
 Vue.use(Router);
 
 export default new Router({
@@ -40,11 +43,33 @@ export default new Router({
           component: AddRole
         },
         {
-          path: "roles",
+          path: "mis-roles",
           name: "roles",
           component: Roles
         }
       ]
-    }
+    },
+	{
+		path: "/profesores",
+		name: "profesores",
+		component: Profesores,
+		children: [
+		  {
+			path: "nuevo-rol",
+			name: "add-role",
+			component: AddRole
+		  },
+		  {
+			path: "mis-roles",
+			name: "roles",
+			component: Roles
+		  },
+		  {
+			path: "nuevo-curso",
+			name: "add-curso",
+			component: AddCurso
+		  }
+		]
+	  }
   ]
 })

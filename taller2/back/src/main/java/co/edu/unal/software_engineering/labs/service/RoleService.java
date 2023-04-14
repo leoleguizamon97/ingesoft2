@@ -22,7 +22,10 @@ public class RoleService{
     }
 
     public List<Role> getAll( ){
-        return roleRepository.findAll( );
+		// System.out.println("---------------------********----------------------------");
+		// System.out.println(roleRepository.findAll( ));
+		// System.out.println("---------------------********----------------------------");
+        return roleRepository.getRoles( );
     }
 
 }

@@ -76,6 +76,8 @@
                     if( response.status !== 200 ){
                         alert( "Error en la autenticación" );
                     }else{
+						//Se coloco pues ya estaba eliminado
+						//alert( "Ingreso correctamente al sistema")
                         setAuthenticationToken( response.data.access_token );
                         this.$router.push( {name: 'home'} );
                     }

@@ -50,14 +50,22 @@ public class UserController{
 
     @PostMapping( value = { "/registro/nuevo-rol/{roleId}" }, consumes = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<Void> registerRoleToUser( @PathVariable Integer roleId, @RequestBody LoginUserPOJO pojo ){
-        Role role = roleService.findById( roleId );
+        
+		System.out.println("INGRESO AL SISTEMAAA");
+		Role role = roleService.findById( roleId );
         String username = SecurityContextHolder.getContext( ).getAuthentication( ).getName( );
         User existingUser = userService.findByUsername( username );
-        if( role == null || existingUser.hasRole( role ) ){
-            return new ResponseEntity<>( HttpStatus.BAD_REQUEST );
-        }else if( !passwordEncoder.matches( pojo.getPassword( ), existingUser.getPassword( ) ) ){
-            return new ResponseEntity<>( HttpStatus.UNAUTHORIZED );
-        }
+		//System.out.println(pojo.getPassword( ) +"  -Contraseña-  "+ existingUser.getPassword( )+ "Resultado "+passwordEncoder.matches( pojo.getPassword( ), existingUser.getPassword( ) ));
+        if( !passwordEncoder.matches( pojo.getPassword( ), existingUser.getPassword( ) ) ){
+            System.out.println("No autorizado");
+			return new ResponseEntity<>( HttpStatus.UNAUTHORIZED );
+			
+        } else if( role == null || existingUser.hasRole( role ) ){
+            System.out.println("Ya lo tiene");
+			return new ResponseEntity<>( HttpStatus.BAD_REQUEST );
+			
+        } 
+
         existingUser.addRole( role );
         userService.save( existingUser );
         return new ResponseEntity<>( HttpStatus.CREATED );

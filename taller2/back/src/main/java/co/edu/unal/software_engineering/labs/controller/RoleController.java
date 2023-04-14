@@ -26,6 +26,7 @@ public class RoleController{
     @GetMapping( "/mis-roles" )
     public List<RolePOJO> getUserRoles( ){
         String username = SecurityContextHolder.getContext( ).getAuthentication( ).getName( );
+		//System.out.println("----*----*----*----*----");
         List<RolePOJO> roles = new ArrayList<>( );
         for( Role role : userService.findByUsername( username ).getRoles( ) ){
             roles.add( new RolePOJO( role ) );
@@ -33,8 +34,12 @@ public class RoleController{
         return roles;
     }
 
-    @GetMapping( value = { "/roles" } )
-    public List<Role> getAllRoles( ){
-        return roleService.getAll( );
+    @GetMapping( "/roles" )
+    public List<RolePOJO> getAllRoles( ){
+		List<RolePOJO> roles = new ArrayList<>( );
+		for (Role role: roleService.getAll( )){
+			roles.add( new RolePOJO( role ) );
+		}
+        return roles;
     }
 }

@@ -1,8 +1,9 @@
 <template>
-  <div class="col-12 col-md-6 col-lg-4 text-center">
-    <h1><b>Nombre Curso:</b>{{ enrolled.courseName }}</h1>
-    <h3>{{ enrolled.courseDurationHours }}</h3>
-    <h6>{{ enrolled.role.roleName }}</h6>
+  <div style="margin: 20px;">
+    <h3><b>Nombre Curso: </b>{{ enrolled.courseName }}</h3>
+    <h3><b>Duracion: </b>{{ enrolled.courseDurationHours }}</h3>
+    <h3><b>Rol: </b> {{ enrolled.role.roleName }}</h3>
+	<h3>-----------------------------------------------------</h3>
   </div>
 </template>
 
@@ -14,7 +15,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>
