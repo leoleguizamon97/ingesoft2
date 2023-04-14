@@ -50,9 +50,12 @@ public class UserController{
 
     @PostMapping( value = { "/registro/nuevo-rol/{roleId}" }, consumes = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<Void> registerRoleToUser( @PathVariable Integer roleId, @RequestBody LoginUserPOJO pojo ){
-        Role role = roleService.findById( roleId );
+        
+		System.out.println("INGRESO AL SISTEMAAA");
+		Role role = roleService.findById( roleId );
         String username = SecurityContextHolder.getContext( ).getAuthentication( ).getName( );
         User existingUser = userService.findByUsername( username );
+		//System.out.println(pojo.getPassword( ) +"  -Contraseña-  "+ existingUser.getPassword( )+ "Resultado "+passwordEncoder.matches( pojo.getPassword( ), existingUser.getPassword( ) ));
         if( role == null || existingUser.hasRole( role ) ){
             return new ResponseEntity<>( HttpStatus.BAD_REQUEST );
         }else if( !passwordEncoder.matches( pojo.getPassword( ), existingUser.getPassword( ) ) ){

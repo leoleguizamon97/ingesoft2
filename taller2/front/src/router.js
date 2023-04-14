@@ -35,12 +35,12 @@ export default new Router({
       component: Home,
       children: [
         {
-          path: "/nuevo-rol",
+          path: "nuevo-rol",
           name: "add-role",
           component: AddRole
         },
         {
-          path: "/mis-roles",
+          path: "mis-roles",
           name: "roles",
           component: Roles
         }

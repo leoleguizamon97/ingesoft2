@@ -26,8 +26,7 @@ public class RoleController{
     @GetMapping( "/mis-roles" )
     public List<RolePOJO> getUserRoles( ){
         String username = SecurityContextHolder.getContext( ).getAuthentication( ).getName( );
-		System.out.println("----*----*----*----*----");
-		System.out.println(SecurityContextHolder.getContext( ));
+		//System.out.println("----*----*----*----*----");
         List<RolePOJO> roles = new ArrayList<>( );
         for( Role role : userService.findByUsername( username ).getRoles( ) ){
             roles.add( new RolePOJO( role ) );
